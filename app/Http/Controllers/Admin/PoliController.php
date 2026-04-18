@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class PoliController extends Controller
 {
-    
+
     public function index()
     {
         $polis = Poli::all();

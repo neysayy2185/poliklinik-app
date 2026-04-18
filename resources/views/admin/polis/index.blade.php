@@ -6,7 +6,7 @@
             Data Poli
         </h2>
 
-        <a href="{{ route('polis.create') }}" class="btn bg-[#2d4499] hover:bg-[#1e2d6b] 
+        <a href="{{ route('polis.create') }}" class="btn bg-[#2d4499] hover:bg-[#1e2d6b]
                   text-white border-none rounded-lg px-5">
             <i class="fas fa-plus"></i>
             Tambah Poli
@@ -54,7 +54,7 @@
                                 <div class="flex justify-end gap-2">
 
                                     {{-- Edit --}}
-                                    <a href="{{ route('polis.edit', $poli->id) }}" class="btn btn-sm bg-amber-500 hover:bg-amber-600 
+                                    <a href="{{ route('polis.edit', $poli->id) }}" class="btn btn-sm bg-amber-500 hover:bg-amber-600
                                                   text-white border-none rounded-lg px-4">
                                         <i class="fas fa-pen-to-square"></i>
                                         Edit
@@ -65,7 +65,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                            onclick="return confirm('Yakin ingin menghapus poli ini?')" class="btn btn-sm bg-red-500 hover:bg-red-600 
+                                            onclick="return confirm('Yakin ingin menghapus poli ini?')" class="btn btn-sm bg-red-500 hover:bg-red-600
                                                        text-white border-none rounded-lg px-4">
                                             <i class="fas fa-trash"></i>
                                             Hapus
