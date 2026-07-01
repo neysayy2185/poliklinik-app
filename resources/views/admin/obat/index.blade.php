@@ -15,6 +15,15 @@
         </a>
     </div>
 
+    {{-- Alert Notifikasi Stok Habis / Sukses Update --}}
+    @if(session('message'))
+        <div class="p-4 mb-5 text-sm rounded-xl font-medium border shadow-sm flex items-center gap-2
+            {{ session('type') === 'success' ? 'bg-green-50 text-green-800 border-green-200' : 'bg-red-50 text-red-800 border-red-200' }}">
+            <i class="fas {{ session('type') === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle' }}"></i>
+            {{ session('message') }}
+        </div>
+    @endif
+
     {{-- Card --}}
     <div class="card bg-base-100 shadow-md rounded-2 border">
         <div class="card-body p-0">
@@ -28,6 +37,7 @@
                             <th class="px-6 py-4">Nama Obat</th>
                             <th class="px-6 py-4">Kemasan</th>
                             <th class="px-6 py-4">Harga</th>
+                            <th class="px-6 py-4">Stok</th> {{-- Tambah kolom header Stok --}}
                             <th class="px-6 py-4 text-right">Aksi</th>
                         </tr>
                     </thead>
@@ -50,6 +60,23 @@
 
                             <td class="px-6 py-4 font-semibold text-slate-800">
                                 Rp {{ number_format($obat->harga, 0, ',', '.') }}
+                            </td>
+
+                            {{-- IMPLEMENTASI OPTIONAL: INDIKATOR BADGE STOK (NILAI PLUS) --}}
+                            <td class="px-6 py-4 font-semibold">
+                                @if($obat->stok <= 0)
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-bold rounded-full bg-red-100 text-red-700 border border-red-200 animate-pulse">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> Habis (0)
+                                    </span>
+                                @elseif($obat->stok <= 10)
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-bold rounded-full bg-amber-100 text-amber-700 border border-amber-200">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Menipis ({{ $obat->stok }})
+                                    </span>
+                                @else
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-bold rounded-full bg-blue-100 text-blue-700 border border-blue-200">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> {{ $obat->stok }} Pcs
+                                    </span>
+                                @endif
                             </td>
 
                             <td class="px-6 py-4 text-right">
@@ -85,7 +112,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="4" class="text-center py-12 text-slate-400">
+                            <td colspan="5" class="text-center py-12 text-slate-400"> {{-- colspan diubah jadi 5 karena tambah 1 kolom stok --}}
                                 <i class="fas fa-inbox text-3xl mb-3 block"></i>
                                 Belum ada data obat
                             </td>

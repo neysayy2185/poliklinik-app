@@ -14,6 +14,12 @@ class PoliController extends Controller
 
     public function get()
     {
+        // $user = Auth::user(); // Mengambil data user yang sedang login
+        // $polis = Poli::all();
+        // $jadwals = JadwalPeriksa::with('dokter')->get();
+
+        // // Pastikan variabel $user ikut dikirim ke view
+        // return view('pasien.daftar', compact('user', 'polis', 'jadwals'));
         $user = Auth::user();
         $polis = Poli::all();
         $jadwal = JadwalPeriksa::with('dokter', 'dokter.poli')->get();

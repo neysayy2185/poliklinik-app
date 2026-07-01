@@ -42,6 +42,17 @@
                             <input type="text" value="{{ $user->no_rm }}"
                                 class="w-full border-2 rounded-lg p-2 bg-gray-100" disabled>
                         </div>
+                        {{-- Nomor RM --}}
+                        {{-- <div class="mb-4">
+                            <label class="font-semibold block mb-1">
+                                Nomor Rekam Medis
+                            </label>
+
+                            <input type="text"
+                                value="{{ $user->no_rm ?? 'Belum Memiliki No. RM (Hubungi Admin)' }}"
+                                class="w-full border-2 rounded-lg p-2 {{ $user->no_rm ? 'bg-gray-100' : 'bg-red-50 text-red-500' }}"
+                                disabled>
+                        </div> --}}
 
                         {{-- Pilih Poli --}}
                         <div class="mb-4">

@@ -45,15 +45,13 @@ class AuthController extends Controller
             'alamat' => ['required', 'string', 'max:255'],
             'no_ktp' => ['required', 'string', 'max:30'],
             'no_hp' => ['required', 'string', 'max:20'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users, email'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'confirmed'],
         ]);
 
         $lastPasien = User::where('role', 'pasien')->orderBy('id', 'desc')->first();
         $lastId = $lastPasien ? $lastPasien->id + 1 : 1;
         $no_rm = date('Ym') . '-' . str_pad($lastId, 3, '0', STR_PAD_LEFT);
-
-        dd($no_rm);
 
         if(User::where('no_ktp', $request->no_ktp)->exists()) {
                 return back()->withErrors(['no_ktp' => 'Nomor Ktp Sudah terdaftar']);
@@ -68,7 +66,6 @@ class AuthController extends Controller
             'role' => 'pasien',
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'pasien',
         ]);
 
         return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
